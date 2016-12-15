@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "load_date",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "load_time",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "location",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "km",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20161215215332",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "acq_car_header",
+    "pagination": "no"
+}

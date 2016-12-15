@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="finnCarsApp.acq_car_header.detail.title">Acq Car Header</span> {{vm.acq_car_header.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="finnCarsApp.acq_car_header.url">Url</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.url}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.load_date">Load Date</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.load_date}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.load_time">Load Time</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.load_time}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.location">Location</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.location}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.year">Year</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.year}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.km">Km</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.km}}</span>
+        </dd>
+        <dt><span data-translate="finnCarsApp.acq_car_header.price">Price</span></dt>
+        <dd>
+            <span>{{vm.acq_car_header.price}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="acq-car-header-detail.edit({id:vm.acq_car_header.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myAcq_car_headerLabel" data-translate="finnCarsApp.acq_car_header.home.createOrEditLabel">Create or edit a Acq Car Header</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.acq_car_header.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.acq_car_header.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.url" for="field_url">Url</label>
+            <input type="text" class="form-control" name="url" id="field_url"
+                    ng-model="vm.acq_car_header.url"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.load_date" for="field_load_date">Load Date</label>
+            <input type="text" class="form-control" name="load_date" id="field_load_date"
+                    ng-model="vm.acq_car_header.load_date"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.load_time" for="field_load_time">Load Time</label>
+            <input type="number" class="form-control" name="load_time" id="field_load_time"
+                    ng-model="vm.acq_car_header.load_time"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.location" for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                    ng-model="vm.acq_car_header.location"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.year" for="field_year">Year</label>
+            <input type="text" class="form-control" name="year" id="field_year"
+                    ng-model="vm.acq_car_header.year"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.km" for="field_km">Km</label>
+            <input type="text" class="form-control" name="km" id="field_km"
+                    ng-model="vm.acq_car_header.km"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="finnCarsApp.acq_car_header.price" for="field_price">Price</label>
+            <input type="text" class="form-control" name="price" id="field_price"
+                    ng-model="vm.acq_car_header.price"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

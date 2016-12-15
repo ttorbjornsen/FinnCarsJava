@@ -1,0 +1,68 @@
+<div>
+    <h2 data-translate="finnCarsApp.acq_car_header.home.title">Acq Car Headers</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="acq-car-header.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="finnCarsApp.acq_car_header.home.createLabel">
+                        Create new Acq Car Header
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.url">Url</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.load_date">Load Date</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.load_time">Load Time</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.location">Location</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.year">Year</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.km">Km</span></th>
+                    <th><span data-translate="finnCarsApp.acq_car_header.price">Price</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="acq_car_header in vm.acq_car_headers track by acq_car_header.id">
+                    <td><a ui-sref="acq-car-header-detail({id:acq_car_header.id})">{{acq_car_header.id}}</a></td>
+                    <td>{{acq_car_header.url}}</td>
+                    <td>{{acq_car_header.load_date}}</td>
+                    <td>{{acq_car_header.load_time}}</td>
+                    <td>{{acq_car_header.location}}</td>
+                    <td>{{acq_car_header.year}}</td>
+                    <td>{{acq_car_header.km}}</td>
+                    <td>{{acq_car_header.price}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="acq-car-header-detail({id:acq_car_header.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="acq-car-header.edit({id:acq_car_header.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="acq-car-header.delete({id:acq_car_header.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

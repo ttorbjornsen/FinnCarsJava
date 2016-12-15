@@ -13,7 +13,7 @@ services:
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
             - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
         ports:
-            - 8080:8080
+            - 8081:8080
     finncars-cassandra:
         extends:
             file: cassandra-cluster.yml
