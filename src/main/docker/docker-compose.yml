@@ -1,0 +1,108 @@
+version: '2'
+services:
+#    finncars-app:
+#        image: finncars
+#        external_links:
+#            - finncars-cassandra:cassandra
+#            - kafka:kafka
+#            - zookeeper:zookeeper
+#        environment:
+#            - SPRING_PROFILES_ACTIVE=prod,swagger
+#            - SPRING_DATA_CASSANDRA_CONTACTPOINTS=cassandra
+#            - JHIPSTER_SLEEP=30 # gives time for the Cassandra cluster to start and execute the migration scripts
+#            - SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS=kafka
+#            - SPRING_CLOUD_STREAM_KAFKA_BINDER_ZK_NODES=zookeeper
+#        ports:
+#            - 8082:8080
+    extractfinncars:
+        image: extractfinncars
+        external_links:
+            - kafka:kafka
+            - zookeeper:zookeeper
+        environment:
+            - "JAVA_OPTS=-Xmx1g -Xms1g"
+    finncars-cassandra:
+        extends:
+            file: cassandra-cluster.yml
+            service: finncars-cassandra
+    finncars-cassandra-node:
+        image: cassandra:3.0
+        links:
+            - finncars-cassandra:seed
+        environment:
+            - CASSANDRA_SEEDS=seed
+#    finncars-cassandra-migration:
+#        extends:
+#            file: cassandra-migration.yml
+#            service: finncars-cassandra-migration
+#        links:
+#            - finncars-cassandra
+#        environment:
+#            - CREATE_KEYSPACE_SCRIPT=create-keyspace-prod.cql
+    kafka:
+        extends:
+            file: kafka.yml
+            service: kafka
+        environment:
+            - KAFKA_ADVERTISED_HOST_NAME=kafka
+    zookeeper:
+        extends:
+            file: kafka.yml
+            service: zookeeper
+
+    spark-master:
+        image: sparkfinncars
+        command: bin/spark-class org.apache.spark.deploy.master.Master -h spark-master
+        hostname: spark-master-host
+        environment:
+            MASTER: spark://spark-master:7077
+            SPARK_CONF_DIR: /conf
+            SPARK_PUBLIC_DNS: localhost
+        links:
+           - kafka
+	   - finncars-cassandra
+        expose:
+           - 7001
+           - 7002
+           - 7003
+           - 7004
+           - 7005
+           - 7006
+           - 7077
+           - 6066
+        ports:
+           - 4040:4040
+           - 6066:6066
+           - 7077:7077
+           - 8080:8080
+        volumes:
+           - ./conf/master:/conf
+           - ./data:/tmp/data
+ 
+    spark-worker:
+        image: sparkfinncars
+        command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
+        hostname: spark-worker-host
+        environment:
+            SPARK_CONF_DIR: /conf
+            SPARK_WORKER_CORES: 2
+            SPARK_WORKER_MEMORY: 1g
+            SPARK_WORKER_PORT: 8881
+            SPARK_WORKER_WEBUI_PORT: 8081
+            SPARK_PUBLIC_DNS: localhost
+        links:
+           - spark-master
+           - kafka
+	   - finncars-cassandra
+        expose:
+           - 7012
+           - 7013
+           - 7014
+           - 7015
+           - 7016
+           - 8881
+        ports:
+           - 8081:8081
+        volumes:
+           - ./conf/worker:/conf
+           - ./data:/tmp/data
